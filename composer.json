@@ -1,0 +1,52 @@
+{
+    "name": "owowagency/laravelresources",
+    "description": ":description",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "OWOW",
+            "email": "bartosz@owow.io",
+            "homepage": "https://owow.agency/"
+        }
+    ],
+    "homepage": "https://bitbucket.com/owowagency/laravelresources",
+    "keywords": ["Laravel", "LaravelResources"],
+    "require": {
+        "illuminate/support": "~5",
+        "dees040/laravel-api-responses": "^0.2.2",
+        "dees040/repository": "^0.1.3",
+        "dingo/api": "2.0.0-alpha2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~7.0",
+        "mockery/mockery": "^1.1",
+        "orchestra/testbench": "~3.0",
+        "sempro/phpunit-pretty-print": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "owowagency\\LaravelResources\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "owowagency\\LaravelResources\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "owowagency\\LaravelResources\\LaravelResourcesServiceProvider"
+            ],
+            "aliases": {
+                "LaravelResources": "owowagency\\LaravelResources\\Facades\\LaravelResources"
+            }
+        }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "repository:owowagency/repository.git"
+        }
+    ]
+}
