@@ -1,10 +1,10 @@
 <?php
 
-namespace owowagency\LaravelResources;
+namespace OwowAgency\LaravelResources;
 
 use Dingo\Api\Routing\Router;
 use Illuminate\Support\ServiceProvider;
-use owowagency\LaravelResources\Routing\ResourceRegistrar;
+use OwowAgency\LaravelResources\Routing\ResourceRegistrar;
 
 class LaravelResourcesServiceProvider extends ServiceProvider
 {
@@ -15,8 +15,8 @@ class LaravelResourcesServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'owowagency');
-        // $this->loadViewsFrom(__DIR__.'/../resources/views', 'owowagency');
+        // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'OwowAgency');
+        // $this->loadViewsFrom(__DIR__.'/../resources/views', 'OwowAgency');
         // $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
         // $this->loadRoutesFrom(__DIR__.'/routes.php');
 
@@ -71,17 +71,17 @@ class LaravelResourcesServiceProvider extends ServiceProvider
 
         // Publishing the views.
         /*$this->publishes([
-            __DIR__.'/../resources/views' => base_path('resources/views/vendor/owowagency'),
+            __DIR__.'/../resources/views' => base_path('resources/views/vendor/OwowAgency'),
         ], 'laravelresources.views');*/
 
         // Publishing assets.
         /*$this->publishes([
-            __DIR__.'/../resources/assets' => public_path('vendor/owowagency'),
+            __DIR__.'/../resources/assets' => public_path('vendor/OwowAgency'),
         ], 'laravelresources.views');*/
 
         // Publishing the translation files.
         /*$this->publishes([
-            __DIR__.'/../resources/lang' => resource_path('lang/vendor/owowagency'),
+            __DIR__.'/../resources/lang' => resource_path('lang/vendor/OwowAgency'),
         ], 'laravelresources.views');*/
 
         // Registering package commands.

@@ -1,6 +1,6 @@
 <?php
 
-namespace owowagency\LaravelResources\Resources;
+namespace OwowAgency\LaravelResources\Resources;
 
 use Illuminate\Http\Resources\Json\Resource;
 

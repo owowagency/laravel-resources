@@ -1,6 +1,6 @@
 <?php
 
-namespace owowagency\LaravelResources\Traits;
+namespace OwowAgency\LaravelResources\Traits;
 
 trait PersistsRelations
 {

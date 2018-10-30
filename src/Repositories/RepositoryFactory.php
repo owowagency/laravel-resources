@@ -1,9 +1,9 @@
 <?php
 
-namespace owowagency\LaravelResources\Repositories;
+namespace OwowAgency\LaravelResources\Repositories;
 
-use owowagency\LaravelResources\Repositories\ResourceRepository;
-use owowagency\LaravelResources\Repositories\Contracts\BaseRepositoryContract;
+use OwowAgency\LaravelResources\Repositories\ResourceRepository;
+use OwowAgency\LaravelResources\Repositories\Contracts\BaseRepositoryContract;
 
 class RepositoryFactory
 {
@@ -33,7 +33,7 @@ class RepositoryFactory
      * Makes the repository for the specified model class.
      *
      * @param  string  $modelClass
-     * @return \owowagency\LaravelResources\Repositories\Contracts\BaseRepositoryContract
+     * @return \OwowAgency\LaravelResources\Repositories\Contracts\BaseRepositoryContract
      *
      * @throws \Exception
      */

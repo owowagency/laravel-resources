@@ -1,8 +1,8 @@
 <?php
 
-namespace owowagency\LaravelResources\Managers;
+namespace OwowAgency\LaravelResources\Managers;
 
-use owowagency\LaravelResources\Managers\Contracts\Manageable;
+use OwowAgency\LaravelResources\Managers\Contracts\Manageable;
 
 abstract class BaseManager implements Manageable
 {

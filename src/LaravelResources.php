@@ -1,6 +1,6 @@
 <?php
 
-namespace owowagency\LaravelResources;
+namespace OwowAgency\LaravelResources;
 
 class LaravelResources
 {

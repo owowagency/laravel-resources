@@ -1,11 +1,11 @@
 <?php
 
-namespace owowagency\LaravelResources\Controllers;
+namespace OwowAgency\LaravelResources\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Http\FormRequest;
-use owowagency\LaravelResources\Requests\ResourceRequest;
+use OwowAgency\LaravelResources\Requests\ResourceRequest;
 
 class ResourceController extends Controller
 {

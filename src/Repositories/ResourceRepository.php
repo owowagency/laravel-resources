@@ -1,9 +1,9 @@
 <?php
 
-namespace owowagency\LaravelResources\Repositories;
+namespace OwowAgency\LaravelResources\Repositories;
 
-use owowagency\LaravelResources\Traits\PersistsRelations;
-use owowagency\LaravelResources\Repositories\Contracts\ResourceRepositoryContract;
+use OwowAgency\LaravelResources\Traits\PersistsRelations;
+use OwowAgency\LaravelResources\Repositories\Contracts\ResourceRepositoryContract;
 
 class ResourceRepository extends BaseRepository implements ResourceRepositoryContract
 {

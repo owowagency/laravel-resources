@@ -1,10 +1,10 @@
 <?php
 
-namespace owowagency\LaravelResources\Repositories;
+namespace OwowAgency\LaravelResources\Repositories;
 
 use Carbon\Carbon;
 use Dees040\Repository\Eloquent\BaseRepository as BaseRepositoryAbstract;
-use owowagency\LaravelResources\Repositories\Contracts\BaseRepositoryContract;
+use OwowAgency\LaravelResources\Repositories\Contracts\BaseRepositoryContract;
 
 abstract class BaseRepository extends BaseRepositoryAbstract implements BaseRepositoryContract
 {

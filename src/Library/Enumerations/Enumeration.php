@@ -1,8 +1,8 @@
 <?php
 
-namespace owowagency\LaravelResources\Library\Enumerations;
+namespace OwowAgency\LaravelResources\Library\Enumerations;
 
-use owowagency\LaravelResources\Library\Enumerations\Contracts\EnumerationContract;
+use OwowAgency\LaravelResources\Library\Enumerations\Contracts\EnumerationContract;
 
 class Enumeration implements EnumerationContract
 {

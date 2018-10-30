@@ -1,6 +1,6 @@
 <?php
 
-namespace owowagency\LaravelResources\Facades;
+namespace OwowAgency\LaravelResources\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

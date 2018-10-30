@@ -1,11 +1,11 @@
 <?php
 
-namespace owowagency\LaravelResources\Resources;
+namespace OwowAgency\LaravelResources\Resources;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Resources\MissingValue;
-use owowagency\LaravelResources\Models\ResourceModel;
-use owowagency\LaravelResources\Resources\ResourceResource;
+use OwowAgency\LaravelResources\Models\ResourceModel;
+use OwowAgency\LaravelResources\Resources\ResourceResource;
 
 class ResourceFactory
 {

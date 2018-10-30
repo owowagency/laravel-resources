@@ -1,6 +1,6 @@
 <?php
 
-namespace owowagency\LaravelResources\Managers;
+namespace OwowAgency\LaravelResources\Managers;
 
 class ManagerFactory
 {

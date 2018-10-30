@@ -1,6 +1,6 @@
 <?php
 
-namespace owowagency\LaravelResources\Library\Enumerations\Contracts;
+namespace OwowAgency\LaravelResources\Library\Enumerations\Contracts;
 
 interface EnumerationContract
 {

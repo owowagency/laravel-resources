@@ -25,21 +25,21 @@
     },
     "autoload": {
         "psr-4": {
-            "owowagency\\LaravelResources\\": "src/"
+            "OwowAgency\\LaravelResources\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "owowagency\\LaravelResources\\Tests\\": "tests"
+            "OwowAgency\\LaravelResources\\Tests\\": "tests"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "owowagency\\LaravelResources\\LaravelResourcesServiceProvider"
+                "OwowAgency\\LaravelResources\\LaravelResourcesServiceProvider"
             ],
             "aliases": {
-                "LaravelResources": "owowagency\\LaravelResources\\Facades\\LaravelResources"
+                "LaravelResources": "OwowAgency\\LaravelResources\\Facades\\LaravelResources"
             }
         }
     },

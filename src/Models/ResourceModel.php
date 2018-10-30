@@ -1,9 +1,9 @@
 <?php
 
-namespace owowagency\LaravelResources\Models;
+namespace OwowAgency\LaravelResources\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use owowagency\LaravelResources\Traits\HasResourceModelRelations;
+use OwowAgency\LaravelResources\Traits\HasResourceModelRelations;
 
 class ResourceModel extends Model
 {

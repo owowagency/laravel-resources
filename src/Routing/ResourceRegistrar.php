@@ -1,6 +1,6 @@
 <?php
 
-namespace owowagency\LaravelResources\Routing;
+namespace OwowAgency\LaravelResources\Routing;
 
 use Dingo\Api\Routing\Router;
 use Dingo\Api\Routing\ResourceRegistrar as DingoResourceRegistrar;

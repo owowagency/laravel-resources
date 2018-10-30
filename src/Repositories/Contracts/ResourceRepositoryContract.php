@@ -1,6 +1,6 @@
 <?php
 
-namespace owowagency\LaravelResources\Repositories\Contracts;
+namespace OwowAgency\LaravelResources\Repositories\Contracts;
 
 interface ResourceRepositoryContract extends BaseRepositoryContract
 {

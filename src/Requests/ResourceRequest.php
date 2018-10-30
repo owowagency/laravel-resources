@@ -1,6 +1,6 @@
 <?php
 
-namespace owowagency\LaravelResources\Requests;
+namespace OwowAgency\LaravelResources\Requests;
 
 use Dingo\Api\Http\FormRequest;
 

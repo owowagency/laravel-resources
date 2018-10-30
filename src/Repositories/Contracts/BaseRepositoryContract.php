@@ -1,6 +1,6 @@
 <?php
 
-namespace owowagency\LaravelResources\Repositories\Contracts;
+namespace OwowAgency\LaravelResources\Repositories\Contracts;
 
 use dees040\repository\Contracts\Repository as RepositoryInterface;
 

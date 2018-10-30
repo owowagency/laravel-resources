@@ -1,6 +1,6 @@
 <?php
 
-namespace owowagency\LaravelResources\Managers\Contracts;
+namespace OwowAgency\LaravelResources\Managers\Contracts;
 
 interface Manageable
 {
