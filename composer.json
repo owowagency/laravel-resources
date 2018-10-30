@@ -42,11 +42,5 @@
                 "LaravelResources": "OwowAgency\\LaravelResources\\Facades\\LaravelResources"
             }
         }
-    },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "repository:owowagency/repository.git"
-        }
-    ]
+    }
 }
