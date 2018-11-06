@@ -16,7 +16,7 @@ trait PersistsRelations
      */
     private function persistRelations($resourceModel, $data)
     {
-        foreach ($resourceModel->definedRelations as $key => $relation) {
+        foreach ($resourceModel->definedRelations ?: [] as $key => $relation) {
             $snakeKey = snake_case($key);
 
             if (! array_key_exists($snakeKey, $data)) continue;
