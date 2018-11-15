@@ -3,7 +3,7 @@
 namespace OwowAgency\LaravelResources\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use OwowAgency\LaravelResources\Traits\HasResourceModelRelations;
+use OwowAgency\LaravelResources\Concerns\HasResourceModelRelations;
 
 class ResourceModel extends Model
 {

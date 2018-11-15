@@ -19,7 +19,7 @@ class ResourceController extends Controller
     /**
      * The resource manager.
      *
-     * @var \App\Managers\ResourceManager
+     * @var \OwowAgency\LaravelResources\Managers\ResourceManager
      */
     public $resourceManager;
 

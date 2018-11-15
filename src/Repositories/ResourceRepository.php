@@ -2,7 +2,7 @@
 
 namespace OwowAgency\LaravelResources\Repositories;
 
-use OwowAgency\LaravelResources\Traits\PersistsRelations;
+use OwowAgency\LaravelResources\Concerns\PersistsRelations;
 use OwowAgency\LaravelResources\Repositories\Contracts\ResourceRepositoryContract;
 
 class ResourceRepository extends BaseRepository implements ResourceRepositoryContract

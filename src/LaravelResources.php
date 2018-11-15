@@ -2,7 +2,139 @@
 
 namespace OwowAgency\LaravelResources;
 
+use Illuminate\Contracts\Container\Container;
+
 class LaravelResources
 {
-    // Build wonderful things
+    /**
+     * The container instance.
+     *
+     * @var \Illuminate\Contracts\Container\Container
+     */
+    protected $container;
+
+    /**
+     * All types which have a definable type.
+     *
+     * @var array
+     */
+    protected $definable = [
+        'managers', 'repositories', 'resources',
+    ];
+
+    /**
+     * The list of manager contracts.
+     *
+     * @var array
+     */
+    protected $managers = [];
+
+    /**
+     * The list of repository contracts.
+     *
+     * @var array
+     */
+    protected $repositories = [];
+
+    /**
+     * The list of resources.
+     *
+     * @var array
+     */
+    protected $resources = [];
+
+    /**
+     * LaravelResources constructor.
+     *
+     * @param  \Illuminate\Contracts\Container\Container  $container
+     * @return void
+     */
+    public function __construct(Container $container)
+    {
+        $this->container = $container;
+    }
+
+    /**
+     * Define a executable class for a given model and the type of class.
+
+     * @param  string  $type
+     * @param  string  $model
+     * @param  string  $value
+     * @return \OwowAgency\LaravelResources\LaravelResources
+     */
+    public function defineFor($type, $model, $value)
+    {
+        if (! in_array($type, $this->definable)) {
+            return;
+        }
+
+        $this->$type[$model] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Get a manager instance for a given model.
+     *
+     * @param  object|string  $model
+     * @return mixed
+     */
+    public function getManagerFor($model)
+    {
+        return $this->getDefinableFor('managers', $model);
+    }
+
+    /**
+     * Get a manager instance for a given model.
+     *
+     * @param  object|string  $model
+     * @return mixed
+     */
+    public function getRepositoryFor($model)
+    {
+        return $this->getDefinableFor('repositories', $model);
+    }
+
+    /**
+     * Get a manager instance for a given model.
+     *
+     * @param  object|string  $model
+     * @return mixed
+     */
+    public function getResourceFor($model)
+    {
+        return $this->getDefinableFor('resources', $model);
+    }
+
+    /**
+     * Get a definable instance for a given model.
+     *
+     * @param  object|string  $model
+     * @return mixed
+     */
+    protected function getDefinableFor($type, $model)
+    {
+        if (is_object($model)) {
+            $model = get_class($model);
+        }
+
+        if (! is_string($model)) {
+            return;
+        }
+
+        if (isset($this->$type[$model])) {
+            return $this->resolveDefinable($this->$type[$model]);
+        }
+    }
+
+    /**
+     * Build a definable instance of the given type.
+     *
+     * @param  object|string  $class
+     * @return mixed
+     */
+    protected function resolveDefinable($class)
+    {
+        return $this->container->make($class);
+    }
 }

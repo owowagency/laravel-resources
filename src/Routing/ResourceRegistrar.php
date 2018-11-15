@@ -2,23 +2,10 @@
 
 namespace OwowAgency\LaravelResources\Routing;
 
-use Dingo\Api\Routing\Router;
 use Dingo\Api\Routing\ResourceRegistrar as DingoResourceRegistrar;
 
 class ResourceRegistrar extends DingoResourceRegistrar
 {
-    /**
-     * Create a new resource registrar instance.
-     *
-     * @param \Dingo\Api\Routing\Router $router
-     *
-     * @return void
-     */
-    public function __construct(Router $router)
-    {
-        parent::__construct($router);
-    }
-
     /**
      * Get the action array for a resource route.
      *

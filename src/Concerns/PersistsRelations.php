@@ -1,6 +1,6 @@
 <?php
 
-namespace OwowAgency\LaravelResources\Traits;
+namespace OwowAgency\LaravelResources\Concerns;
 
 trait PersistsRelations
 {
@@ -19,7 +19,9 @@ trait PersistsRelations
         foreach ($resourceModel->definedRelations ?: [] as $key => $relation) {
             $snakeKey = snake_case($key);
 
-            if (! array_key_exists($snakeKey, $data)) continue;
+            if (! array_key_exists($snakeKey, $data)) {
+                continue;
+            }
 
             $method = 'persist' . ucfirst($relation['type']);
 
