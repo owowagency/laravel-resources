@@ -4,13 +4,13 @@ if (! function_exists('resource')) {
     /**
      * Makes the resource for the specified model class.
      *
-     * @param  mixed  $model
+     * @param  mixed  $modelClass
      * @param  boolean  $isCollection
      * @return mixed
      */
-    function resource($model, $isCollection = false)
+    function resource($modelClass, $isCollection = false)
     {
-        return (new \OwowAgency\LaravelResources\Resources\ResourceFactory)->make($model, $isCollection);
+        return \LaravelResources::getResourceFor($modelClass, $isCollection);
     }
 }
 
@@ -23,7 +23,7 @@ if (! function_exists('manager')) {
      */
     function manager($modelClass)
     {
-        return (new \OwowAgency\LaravelResources\Managers\ManagerFactory)->make($modelClass);
+        return \LaravelResources::getManagerFor($modelClass);
     }
 }
 
@@ -36,6 +36,6 @@ if (! function_exists('repository')) {
      */
     function repository($modelClass)
     {
-        return (new \OwowAgency\LaravelResources\Repositories\RepositoryFactory)->make($modelClass);
+        return \LaravelResources::getRepositoryFor($modelClass);
     }
 }
