@@ -2,15 +2,15 @@
 
 namespace OwowAgency\LaravelResources\Resources;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Resources\MissingValue;
 use OwowAgency\LaravelResources\Models\ResourceModel;
-use OwowAgency\LaravelResources\Resources\ResourceResource;
 
 class ResourceFactory
 {
     /**
      * The default resource class.
+     *
+     * @var string
      */
     public $defaultResourceClass = ResourceResource::class;
 

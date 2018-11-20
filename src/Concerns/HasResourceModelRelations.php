@@ -1,6 +1,6 @@
 <?php
 
-namespace OwowAgency\LaravelResources\Traits;
+namespace OwowAgency\LaravelResources\Concerns;
 
 trait HasResourceModelRelations
 {

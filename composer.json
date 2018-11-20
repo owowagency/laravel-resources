@@ -27,7 +27,10 @@
     "autoload": {
         "psr-4": {
             "OwowAgency\\LaravelResources\\": "src/"
-        }
+        },
+        "files": [
+            "src/Library/helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
