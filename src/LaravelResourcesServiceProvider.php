@@ -37,7 +37,7 @@ class LaravelResourcesServiceProvider extends ServiceProvider
 
         // Register the service the package provides.
         $this->app->singleton('laravelresources', function ($app) {
-            return new LaravelResources;
+            return new LaravelResources($app);
         });
     }
 
