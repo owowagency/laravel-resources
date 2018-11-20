@@ -29,10 +29,12 @@ class LaravelResourcesServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/config/laravelresources.php', 'laravelresources');
+        $configPath = __DIR__.'/../config/laravelresources.php';
+
+        $this->mergeConfigFrom($configPath, 'laravelresources');
 
         $this->publishes([
-            __DIR__.'/../config/laravelresources.php' => config_path('laravelresources.php'),
+            $configPath => config_path('laravelresources.php'),
         ], 'laravelresources');
 
         // Register the service the package provides.
