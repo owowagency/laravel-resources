@@ -2,9 +2,9 @@
 
 namespace OwowAgency\LaravelResources\Routing;
 
-use Dingo\Api\Routing\ResourceRegistrar as DingoResourceRegistrar;
+use Illuminate\Routing\ResourceRegistrar as IlluminateResourceRegistrar;
 
-class ResourceRegistrar extends DingoResourceRegistrar
+class ResourceRegistrar extends IlluminateResourceRegistrar
 {
     /**
      * Get the action array for a resource route.

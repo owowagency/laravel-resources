@@ -2,7 +2,6 @@
 
 namespace OwowAgency\LaravelResources;
 
-use Dingo\Api\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 use OwowAgency\LaravelResources\Routing\ResourceRegistrar;
 
@@ -15,10 +14,8 @@ class LaravelResourcesServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $registrar = new ResourceRegistrar($this->app[Router::class]);
-
-        $this->app->bind('Dingo\Api\Routing\ResourceRegistrar', function () use ($registrar) {
-            return $registrar;
+        $this->app->bind('Illuminate\Routing\ResourceRegistrar', function () {
+            return new ResourceRegistrar($this->app['router']);
         });
     }
 
