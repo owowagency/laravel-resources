@@ -3,7 +3,7 @@
 namespace OwowAgency\LaravelResources\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use Illuminate\Http\Controller;
 use Illuminate\Foundation\Http\FormRequest;
 use OwowAgency\LaravelResources\Requests\ResourceRequest;
 
