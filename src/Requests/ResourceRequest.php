@@ -2,7 +2,7 @@
 
 namespace OwowAgency\LaravelResources\Requests;
 
-use Dingo\Api\Http\FormRequest;
+use Illuminate\Http\FormRequest;
 
 class ResourceRequest extends FormRequest
 {

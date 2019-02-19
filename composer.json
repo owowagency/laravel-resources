@@ -1,11 +1,11 @@
 {
     "name": "owowagency/laravel-resources",
-    "description": "A package to develop projects faster",
+    "description": "A package to develop projects faster.",
     "license": "MIT",
     "authors": [
         {
-            "name": "Bartosz",
-            "email": "bartosz@owow.io"
+            "name": "Thomas",
+            "email": "thomas@owow.io"
         }
     ],
     "keywords": [
@@ -15,8 +15,7 @@
     "require": {
         "illuminate/support": "~5",
         "dees040/laravel-api-responses": "^0.2",
-        "dees040/repository": "^0.1",
-        "dingo/api": "2.0.0-alpha2"
+        "dees040/repository": "^0.1"
     },
     "require-dev": {
         "phpunit/phpunit": "~7.0",
