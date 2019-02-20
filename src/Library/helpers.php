@@ -1,16 +1,20 @@
 <?php
 
+use OwowAgency\LaravelResources\Managers\ManagerFactory;
+use OwowAgency\LaravelResources\Resources\ResourceFactory;
+use OwowAgency\LaravelResources\Repositories\RepositoryFactory;
+
 if (! function_exists('resource')) {
     /**
      * Makes the resource for the specified model class.
      *
-     * @param  mixed  $modelClass
+     * @param  mixed  $model
      * @param  boolean  $isCollection
      * @return mixed
      */
-    function resource($modelClass, $isCollection = false)
+    function resource($model, $isCollection = false)
     {
-        return \LaravelResources::getResourceFor($modelClass, $isCollection);
+        return (new ResourceFactory)->make($model, $isCollection);
     }
 }
 
@@ -23,7 +27,7 @@ if (! function_exists('manager')) {
      */
     function manager($modelClass)
     {
-        return \LaravelResources::getManagerFor($modelClass);
+        return (new ManagerFactory)->make($modelClass);
     }
 }
 
@@ -36,6 +40,6 @@ if (! function_exists('repository')) {
      */
     function repository($modelClass)
     {
-        return \LaravelResources::getRepositoryFor($modelClass);
+        return (new RepositoryFactory)->make($modelClass);
     }
 }
