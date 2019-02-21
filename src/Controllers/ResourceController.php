@@ -104,7 +104,7 @@ class ResourceController extends Controller
 
         $this->authorize('update', [$this->resourceModelClass, $id, $request->validated()]);
 
-        $resource = $this->resourceManager->update($request->validated(), $id);
+        $resource = $this->resourceManager->update($id, $request->validated());
 
         $resource = resource($resource);
 
