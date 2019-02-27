@@ -2,7 +2,7 @@
 
 namespace OwowAgency\LaravelResources\Requests;
 
-use Illuminate\Http\FormRequest;
+use Illuminate\Foundation\Http\FormRequest;
 
 class ResourceRequest extends FormRequest
 {
