@@ -209,7 +209,7 @@ class ResourceController extends Controller
         if ($id instanceof Model) {
             $keyName = $id->getKeyName();
 
-            return return $id->$keyName;
+            return $id->$keyName;
         }
 
         if (is_object($id)) {
