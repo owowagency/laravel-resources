@@ -4,6 +4,7 @@ namespace OwowAgency\LaravelResources\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Http\FormRequest;
 use OwowAgency\LaravelResources\Requests\ResourceRequest;
 
@@ -82,6 +83,8 @@ class ResourceController extends Controller
      */
     public function show($id)
     {
+        $id = $this->getId($id);
+
         $this->authorize('view', [$this->resourceModelClass, $id]);
 
         $resource = $this->resourceManager->find($id);
@@ -102,6 +105,8 @@ class ResourceController extends Controller
     {
         $request = $this->validateRequest();
 
+        $id = $this->getId($id);
+
         $this->authorize('update', [$this->resourceModelClass, $id, $request->validated()]);
 
         $resource = $this->resourceManager->update($id, $request->validated());
@@ -119,6 +124,8 @@ class ResourceController extends Controller
      */
     public function destroy($id)
     {
+        $id = $this->getId($id);
+
         $this->authorize('delete', [$this->resourceModelClass, $id]);
 
         $this->resourceManager->delete($id);
@@ -189,5 +196,26 @@ class ResourceController extends Controller
         $requestClass = $requests[$actionMethod];
 
         return app($requestClass);
+    }
+
+    /**
+     * Tries to get an identifier for the given value.
+     * 
+     * @param  mixed  $id
+     * @return int
+     */
+    public function getId($id)
+    {
+        if ($id instanceof Model) {
+            $keyName = $id->getKeyName();
+
+            return return $id->$keyName;
+        }
+
+        if (is_object($id)) {
+            return $id->id;
+        }
+
+        return $id;
     }
 }
