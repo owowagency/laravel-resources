@@ -6,10 +6,15 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 use OwowAgency\LaravelResources\Requests\ResourceRequest;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class ResourceController extends Controller
 {
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
     /**
      * The resource model class.
      *
