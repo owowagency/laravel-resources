@@ -21,7 +21,8 @@
         "phpunit/phpunit": "~8.0",
         "mockery/mockery": "^1.1",
         "orchestra/testbench": "^3.5",
-        "sempro/phpunit-pretty-print": "^1.0"
+        "sempro/phpunit-pretty-print": "^1.0",
+        "spatie/phpunit-snapshot-assertions": "^2.1"
     },
     "autoload": {
         "psr-4": {
