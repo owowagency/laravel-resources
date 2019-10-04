@@ -7,6 +7,7 @@ use Orchestra\Testbench\TestCase as BaseTestCase;
 use OwowAgency\LaravelResources\Controllers\ResourceController;
 use OwowAgency\LaravelResources\Tests\Support\Models\TestModel;
 use OwowAgency\LaravelResources\LaravelResourcesServiceProvider;
+use OwowAgency\LaravelResources\Tests\Support\Requests\TestModelRequest;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -56,6 +57,10 @@ abstract class TestCase extends BaseTestCase
     {
         Route::resource('test-models', ResourceController::class, [
             'model' => TestModel::class,
+            'requests' => [
+                'store' => TestModelRequest::class,
+                'update' => TestModelRequest::class,
+            ],
         ]);
     }
 }
