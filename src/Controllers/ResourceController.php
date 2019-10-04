@@ -4,6 +4,7 @@ namespace OwowAgency\LaravelResources\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -13,7 +14,9 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class ResourceController extends Controller
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests {
+        AuthorizesRequests::authorize as traitAuthorize;
+    }
 
     /**
      * The resource model class.
@@ -177,6 +180,23 @@ class ResourceController extends Controller
         }
 
         $this->resourceManager = manager($this->resourceModelClass);
+    }
+
+    /**
+     * Authorize a given action for the current user.
+     *
+     * @param  mixed  $ability
+     * @param  mixed|array  $arguments
+     * @return mixed
+     */
+    public function authorize($ability, $arguments = [])
+    {
+        // Check if a policy exists.
+        if (is_null(Gate::getPolicyFor($this->resourceModelClass))) {
+            return;
+        }
+
+        return $this->traitAuthorize($ability, $arguments);
     }
 
     /**
