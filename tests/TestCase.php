@@ -2,8 +2,12 @@
 
 namespace OwowAgency\LaravelResources\Tests;
 
+use Illuminate\Support\Facades\Route;
 use Orchestra\Testbench\TestCase as BaseTestCase;
+use OwowAgency\LaravelResources\Tests\Support\Models\TestModel;
 use OwowAgency\LaravelResources\LaravelResourcesServiceProvider;
+use OwowAgency\LaravelResources\Controllers\ResourceController;
+
 
 class TestCase extends BaseTestCase
 {
@@ -18,7 +22,7 @@ class TestCase extends BaseTestCase
             __DIR__ . '/support/database/migrations'
         );
 
-        require __DIR__ . '/support/routes/test-models.php';
+        $this->setUpRoutes();
     }
 
     /**
@@ -43,5 +47,24 @@ class TestCase extends BaseTestCase
     protected function createTestResponse($response)
     {
         return TestResponse::fromBaseResponse($response);
+    }
+
+    /**
+     * Sets up the routes that are used during testing.
+     * 
+     * @return void
+     */
+    private function setUpRoutes(): void
+    {
+        Route::resource('test-models', ResourceController::class, [
+            'only' => [
+                'index',
+            ],
+            'model' => TestModel::class,
+            // 'requests' => [
+            //     'store' => StoreRequest::class,
+            //     'update' => UpdateRequest::class,
+            // ],
+        ]);
     }
 }
