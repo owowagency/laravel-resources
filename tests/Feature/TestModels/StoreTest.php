@@ -11,7 +11,7 @@ class StoreTest extends TestCase
     use MatchesSnapshots;
 
     /** @test */
-    public function index_can_be_requested()
+    public function store_can_be_requested()
     {
         $data = $this->requestData();
 

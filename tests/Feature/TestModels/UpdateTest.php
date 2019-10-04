@@ -7,18 +7,32 @@ use OwowAgency\LaravelResources\Tests\TestCase;
 use OwowAgency\LaravelResources\Tests\Support\Models\TestModel;
 use OwowAgency\LaravelResources\Tests\Support\Snapshots\MatchesSnapshots;
 
-class ShowTest extends TestCase
+class UpdateTest extends TestCase
 {
     use MatchesSnapshots;
 
     /** @test */
-    public function show_can_be_requested()
+    public function update_can_be_requested()
     {
         [$model] = $this->prepare();
 
-        $response = $this->makeRequest($model);
+        $data = $this->requestData();
+
+        $response = $this->makeRequest($model, $data);
 
         $this->assertResponse($response);
+    }
+
+    /**
+     * Returns data that could be used in a request.
+     * 
+     * @return array
+     */
+    protected function requestData(): array
+    {
+        return [
+            'value' => 'some_other_value',
+        ];
     }
 
     /**
@@ -39,11 +53,12 @@ class ShowTest extends TestCase
      * Makes a request.
      * 
      * @param  \OwowAgency\LaravelResources\Tests\Support\Models\TestModel  $model
+     * @param  array  $data
      * @return \Illuminate\Foundation\Testing\TestResponse
      */
-    protected function makeRequest(TestModel $model): TestResponse
+    protected function makeRequest(TestModel $model, array $data): TestResponse
     {
-        return $this->get("test-models/$model->id");
+        return $this->put("test-models/$model->id", $data);
     }
 
     /**
@@ -57,5 +72,20 @@ class ShowTest extends TestCase
         $response->assertStatus(200);
 
         $this->assertJsonStructureSnapshot($response);
+    }
+
+    /**
+     * Asserts the database.
+     * 
+     * @param  \OwowAgency\LaravelResources\Tests\Support\Models\TestModel  $model
+     * @param  array  $data
+     * @return void
+     */
+    protected function assertDatabase(TestModel $model, array $data): void
+    {
+        $this->assertDatabaseHas('test_models', array_merge(
+            ['id' => $model->id],
+            $data
+        ));
     }
 }
