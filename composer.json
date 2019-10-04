@@ -21,7 +21,8 @@
         "phpunit/phpunit": "~7.0",
         "mockery/mockery": "^1.1",
         "orchestra/testbench": "^3.5",
-        "sempro/phpunit-pretty-print": "^1.0"
+        "sempro/phpunit-pretty-print": "^1.0",
+        "orchestra/database": "^3.5"
     },
     "autoload": {
         "psr-4": {
@@ -33,7 +34,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "OwowAgency\\LaravelResources\\Tests\\": "tests"
+            "OwowAgency\\LaravelResources\\Tests\\": "tests/"
         }
     },
     "extra": {
