@@ -9,6 +9,8 @@ class IndexTest extends TestCase
     /** @test */
     public function migrate_you_fucking_cunt()
     {
-        dd(\DB::table('test_models')->get());
+        $response = $this->get('test-models');
+
+        $response->assertStatus(200);
     }
 }
