@@ -26,13 +26,6 @@ class ResourceController extends Controller
     public $resourceModelClass;
 
     /**
-     * The resource manager.
-     *
-     * @var \OwowAgency\LaravelResources\Managers\ResourceManager
-     */
-    public $resourceManager;
-
-    /**
      * ResourceController constructor.
      *
      * @return void
@@ -42,8 +35,6 @@ class ResourceController extends Controller
     public function __construct()
     {
         $this->setResourceModelClass();
-
-        $this->setResourceManager();
     }
 
     /**
@@ -55,13 +46,13 @@ class ResourceController extends Controller
     {
         $this->authorize('view', $this->resourceModelClass);
 
-        $resourcesPaginated = $this->resourceManager->paginate();
+        $paginated = $this->resourceModelClass::paginate();
 
-        $resources = resource($resourcesPaginated, true);
+        $resources = resource($paginated, true);
 
-        $resourcesPaginated->setCollection($resources->collection);
+        $paginated->setCollection($resources->collection);
 
-        return ok($resourcesPaginated);
+        return ok($paginated);
     }
 
     /**
@@ -76,9 +67,9 @@ class ResourceController extends Controller
 
         $this->authorize('create', [$this->resourceModelClass, $request->validated()]);
 
-        $resource = $this->resourceManager->create($request->validated());
+        $model = $this->resourceModelClass::create($request->validated());
 
-        $resource = resource($resource);
+        $resource = resource($model);
 
         return created($resource);
     }
@@ -86,18 +77,16 @@ class ResourceController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  mixed  $model
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($model)
     {
-        $id = $this->getId($id);
+        $model = $this->getModel($model);
 
-        $this->authorize('view', [$this->resourceModelClass, $id]);
+        $this->authorize('view', $model);
 
-        $resource = $this->resourceManager->find($id);
-
-        $resource = resource($resource);
+        $resource = resource($model);
 
         return ok($resource);
     }
@@ -106,20 +95,20 @@ class ResourceController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  mixed  $model
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $model)
     {
         $request = $this->validateRequest();
 
-        $id = $this->getId($id);
+        $model = $this->getModel($model);
 
-        $this->authorize('update', [$this->resourceModelClass, $id, $request->validated()]);
+        $this->authorize('update', [$model, $request->validated()]);
 
-        $resource = $this->resourceManager->update($id, $request->validated());
+        $model->update($request->validated());
 
-        $resource = resource($resource);
+        $resource = resource($model);
 
         return ok($resource);
     }
@@ -127,16 +116,16 @@ class ResourceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  mixed  $model
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($model)
     {
-        $id = $this->getId($id);
+        $model = $this->getModel($model);
 
-        $this->authorize('delete', [$this->resourceModelClass, $id]);
+        $this->authorize('delete', $model);
 
-        $this->resourceManager->delete($id);
+        $model->delete();
 
         return no_content();
     }
@@ -168,21 +157,6 @@ class ResourceController extends Controller
     }
 
     /**
-     * Sets resource manager.
-     * Do not set when no resource model class is set.
-     * 
-     * @return void
-     */
-    public function setResourceManager()
-    {
-        if (! $this->resourceModelClass) {
-            return;
-        }
-
-        $this->resourceManager = manager($this->resourceModelClass);
-    }
-
-    /**
      * Authorize a given action for the current user.
      *
      * @param  mixed  $ability
@@ -191,7 +165,7 @@ class ResourceController extends Controller
      */
     public function authorize($ability, $arguments = [])
     {
-        // Check if a policy exists.
+        // Do not try to authorize when policy does not exist.
         if (is_null(Gate::getPolicyFor($this->resourceModelClass))) {
             return;
         }
@@ -224,23 +198,17 @@ class ResourceController extends Controller
     }
 
     /**
-     * Tries to get an identifier for the given value.
+     * Tries to retrieve the model.
      * 
-     * @param  mixed  $id
+     * @param  mixed  $model
      * @return int
      */
-    public function getId($id)
+    public function getModel($model)
     {
-        if ($id instanceof Model) {
-            $keyName = $id->getKeyName();
-
-            return $id->$keyName;
+        if ($model instanceof Model) {
+            return $model;
         }
 
-        if (is_object($id)) {
-            return $id->id;
-        }
-
-        return $id;
+        return $this->resourceModelClass::findOrFail($model);
     }
 }
