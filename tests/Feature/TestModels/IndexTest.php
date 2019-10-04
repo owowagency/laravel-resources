@@ -53,6 +53,6 @@ class IndexTest extends TestCase
      */
     protected function assertResponse(TestResponse $response): void
     {
-        $this->assertMatchesJsonSnapshot($response->json());
+        $this->assertJsonStructureSnapshot($response);
     }
 }
