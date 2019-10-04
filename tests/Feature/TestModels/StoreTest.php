@@ -4,7 +4,6 @@ namespace OwowAgency\LaravelResources\Tests\Feature\TestModels;
 
 use Illuminate\Foundation\Testing\TestResponse;
 use OwowAgency\LaravelResources\Tests\TestCase;
-use OwowAgency\LaravelResources\Tests\Support\Models\TestModel;
 use OwowAgency\LaravelResources\Tests\Support\Snapshots\MatchesSnapshots;
 
 class StoreTest extends TestCase
@@ -54,6 +53,8 @@ class StoreTest extends TestCase
      */
     protected function assertResponse(TestResponse $response): void
     {
+        $response->assertStatus(201);
+
         $this->assertJsonStructureSnapshot($response);
     }
 

@@ -7,16 +7,16 @@ use OwowAgency\LaravelResources\Tests\TestCase;
 use OwowAgency\LaravelResources\Tests\Support\Models\TestModel;
 use OwowAgency\LaravelResources\Tests\Support\Snapshots\MatchesSnapshots;
 
-class IndexTest extends TestCase
+class ShowTest extends TestCase
 {
     use MatchesSnapshots;
 
     /** @test */
     public function index_can_be_requested()
     {
-        $this->prepare();
+        [$model] = $this->prepare();
 
-        $response = $this->makeRequest();
+        $response = $this->makeRequest($model);
 
         $this->assertResponse($response);
     }
@@ -38,11 +38,12 @@ class IndexTest extends TestCase
     /**
      * Makes a request.
      * 
+     * @param  \OwowAgency\LaravelResources\Tests\Support\Models\TestModel  $model
      * @return \Illuminate\Foundation\Testing\TestResponse
      */
-    protected function makeRequest(): TestResponse
+    protected function makeRequest(TestModel $model): TestResponse
     {
-        return $this->get('test-models');
+        return $this->get("test-models/$model->id");
     }
 
     /**
