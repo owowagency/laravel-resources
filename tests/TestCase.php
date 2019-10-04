@@ -15,8 +15,10 @@ class TestCase extends BaseTestCase
         parent::setUp();
 
         $this->loadMigrationsFrom(
-            __DIR__ . 'support/database/migrations'
+            __DIR__ . '/support/database/migrations'
         );
+
+        require __DIR__ . '/support/routes/test-models.php';
     }
 
     /**
@@ -30,5 +32,16 @@ class TestCase extends BaseTestCase
         return [
             LaravelResourcesServiceProvider::class,
         ];
+    }
+
+    /**
+     * Create the test response instance from the given response.
+     *
+     * @param  \Illuminate\Http\Response  $response
+     * @return \Tests\TestResponse
+     */
+    protected function createTestResponse($response)
+    {
+        return TestResponse::fromBaseResponse($response);
     }
 }

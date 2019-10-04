@@ -11,6 +11,8 @@ class IndexTest extends TestCase
     {
         $response = $this->get('test-models');
 
-        $response->assertOk();
+        $response->json();
+
+        $response->assertStatus(200);
     }
 }
