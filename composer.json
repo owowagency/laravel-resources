@@ -18,10 +18,11 @@
         "dees040/repository": "^0.1"
     },
     "require-dev": {
-        "phpunit/phpunit": "~7.0",
+        "phpunit/phpunit": "~8.0",
         "mockery/mockery": "^1.1",
-        "orchestra/testbench": "~3.0",
-        "sempro/phpunit-pretty-print": "^1.0"
+        "orchestra/testbench": "^3.5",
+        "sempro/phpunit-pretty-print": "^1.0",
+        "spatie/phpunit-snapshot-assertions": "^2.1"
     },
     "autoload": {
         "psr-4": {
@@ -33,7 +34,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "OwowAgency\\LaravelResources\\Tests\\": "tests"
+            "OwowAgency\\LaravelResources\\Tests\\": "tests/"
         }
     },
     "extra": {
