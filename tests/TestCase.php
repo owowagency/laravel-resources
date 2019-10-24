@@ -3,6 +3,7 @@
 namespace OwowAgency\LaravelResources\Tests;
 
 use Illuminate\Support\Facades\Route;
+use OwowAgency\Snapshots\MatchesSnapshots;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 use OwowAgency\LaravelResources\Controllers\ResourceController;
 use OwowAgency\LaravelResources\Tests\Support\Models\TestModel;
@@ -11,6 +12,8 @@ use OwowAgency\LaravelResources\Tests\Support\Requests\TestModelRequest;
 
 abstract class TestCase extends BaseTestCase
 {
+    use MatchesSnapshots;
+
     /**
      * Setup the test environment.
      *
