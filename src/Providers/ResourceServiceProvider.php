@@ -5,7 +5,7 @@ namespace OwowAgency\LaravelResources\Providers;
 class ResourceServiceProvider extends BaseResourcesServiceProvider
 {
     /**
-     * The managers mappings for the application.
+     * The resources mappings for the application.
      *
      * @var array
      */

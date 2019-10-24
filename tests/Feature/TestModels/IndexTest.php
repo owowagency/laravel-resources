@@ -5,12 +5,9 @@ namespace OwowAgency\LaravelResources\Tests\Feature\TestModels;
 use Illuminate\Foundation\Testing\TestResponse;
 use OwowAgency\LaravelResources\Tests\TestCase;
 use OwowAgency\LaravelResources\Tests\Support\Models\TestModel;
-use OwowAgency\LaravelResources\Tests\Support\Snapshots\MatchesSnapshots;
 
 class IndexTest extends TestCase
 {
-    use MatchesSnapshots;
-
     /** @test */
     public function index_can_be_requested()
     {

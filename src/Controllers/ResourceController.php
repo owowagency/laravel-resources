@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use OwowAgency\LaravelResources\Requests\ResourceRequest;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -27,10 +28,6 @@ class ResourceController extends Controller
 
     /**
      * ResourceController constructor.
-     *
-     * @return void
-     * 
-     * @throws \Exception
      */
     public function __construct()
     {
@@ -40,19 +37,32 @@ class ResourceController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  \Illuminate\Http\Request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $this->authorize('view', $this->resourceModelClass);
 
-        $paginated = $this->resourceModelClass::paginate();
+        $models = $this->indexModel();
 
-        $resources = resource($paginated, true);
+        $resources = resource($models, true);
 
-        $paginated->setCollection($resources->collection);
+        if ($models instanceof LengthAwarePaginator) {
+            $models->setCollection($resources->collection);
+        }
 
-        return ok($paginated);
+        return ok($models);
+    }
+
+    /**
+     * Returns models instances used for the index action.
+     * 
+     * @return mixed
+     */
+    public function indexModel()
+    {
+        return $this->resourceModelClass::paginate();
     }
 
     /**
@@ -67,7 +77,7 @@ class ResourceController extends Controller
 
         $this->authorize('create', [$this->resourceModelClass, $request->validated()]);
 
-        $model = $this->resourceModelClass::create($request->validated());
+        $model = $this->storeModel($request);
 
         $resource = resource($model);
 
@@ -75,9 +85,20 @@ class ResourceController extends Controller
     }
 
     /**
+     * Stores and returns the model instance for the store action.
+     * 
+     * @param  \Illuminate\Http\Request  $request
+     * @return mixed
+     */
+    public function storeModel(Request $request)
+    {
+        return $this->resourceModelClass::create($request->validated());
+    }
+
+    /**
      * Display the specified resource.
      *
-     * @param  mixed  $model
+     * @param  \Illuminate\Database\Eloquent\Model  $model
      * @return \Illuminate\Http\Response
      */
     public function show($model)
@@ -86,9 +107,22 @@ class ResourceController extends Controller
 
         $this->authorize('view', $model);
 
+        $model = $this->showModel($model);
+
         $resource = resource($model);
 
         return ok($resource);
+    }
+
+    /**
+     * Returns the model instance for the show action.
+     * 
+     * @param  \Illuminate\Database\Eloquent\Model  $model
+     * @return mixed
+     */
+    public function showModel(Model $model)
+    {
+        return $model;
     }
 
     /**
@@ -106,11 +140,23 @@ class ResourceController extends Controller
 
         $this->authorize('update', [$model, $request->validated()]);
 
-        $model->update($request->validated());
+        $this->updateModel($request, $model);
 
         $resource = resource($model);
 
         return ok($resource);
+    }
+
+    /**
+     * Updates and returns the model instance for the update action.
+     * 
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Database\Eloquent\Model  $model
+     * @return void
+     */
+    public function updateModel(Request $request, Model $model)
+    {
+        $model->update($request->validated());
     }
 
     /**
@@ -125,9 +171,21 @@ class ResourceController extends Controller
 
         $this->authorize('delete', $model);
 
-        $model->delete();
+        $this->destroyModel($model);
 
         return no_content();
+    }
+
+    /**
+     * Deletes the model instance for the destroy action.
+     * 
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Database\Eloquent\Model  $model
+     * @return void
+     */
+    public function destroyModel(Model $model)
+    {
+        $model->delete();
     }
 
     /**
@@ -135,9 +193,9 @@ class ResourceController extends Controller
      * When no request is present, like in terminal, skip.
      * Throw exception route has no specified model.
      * 
-     * @throws \Exception
-     *
      * @return void
+     * 
+     * @throws \Exception
      */
     public function setResourceModelClass()
     {
@@ -178,7 +236,7 @@ class ResourceController extends Controller
      * 
      * @return \Illuminate\Foundation\Http\FormRequest
      */
-    public function validateRequest() : FormRequest
+    public function validateRequest(): FormRequest
     {
         $requests = request()->route()->getAction('requests');
 
@@ -201,9 +259,9 @@ class ResourceController extends Controller
      * Tries to retrieve the model.
      * 
      * @param  mixed  $model
-     * @return int
+     * @return \Illuminate\Database\Eloquent\Model
      */
-    public function getModel($model)
+    public function getModel($model): Model
     {
         if ($model instanceof Model) {
             return $model;

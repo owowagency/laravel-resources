@@ -19,22 +19,8 @@ class LaravelResources
      * @var array
      */
     protected $definable = [
-        'managers', 'repositories', 'resources',
+        'resources',
     ];
-
-    /**
-     * The list of manager contracts.
-     *
-     * @var array
-     */
-    protected $managers = [];
-
-    /**
-     * The list of repository contracts.
-     *
-     * @var array
-     */
-    protected $repositories = [];
 
     /**
      * The list of resources.
@@ -74,29 +60,7 @@ class LaravelResources
     }
 
     /**
-     * Get a manager instance for a given model.
-     *
-     * @param  object|string  $model
-     * @return mixed
-     */
-    public function getManagerFor($model)
-    {
-        return $this->getDefinableFor('managers', $model);
-    }
-
-    /**
-     * Get a manager instance for a given model.
-     *
-     * @param  object|string  $model
-     * @return mixed
-     */
-    public function getRepositoryFor($model)
-    {
-        return $this->getDefinableFor('repositories', $model);
-    }
-
-    /**
-     * Get a manager instance for a given model.
+     * Get a resource instance for a given model.
      *
      * @param  object|string  $model
      * @return mixed
