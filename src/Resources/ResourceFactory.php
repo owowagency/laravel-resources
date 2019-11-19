@@ -95,10 +95,27 @@ class ResourceFactory
      */
     public function getResourceClass($modelClass)
     {
-        return data_get(
+        // Check if a resource class has been configured.
+        $resourceClass = data_get(
             $this->modelResource,
             $modelClass,
-            $this->defaultResourceClass
         );
+
+        if ($resourceClass !== null) {
+            return $resourceClass;
+        }
+
+        // Try to guess the resource.
+        $guess = sprintf(
+            '%s\\%sResource',
+            config('laravelresources.resource_namespace'),
+            class_basename($modelClass),
+        );
+
+        if (class_exists($guess)) {
+            return $guess;
+        }
+
+        return $this->defaultResourceClass;
     }
 }
