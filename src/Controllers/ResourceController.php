@@ -42,7 +42,7 @@ class ResourceController extends Controller
      */
     public function index(Request $request)
     {
-        $this->authorize('view', $this->resourceModelClass);
+        $this->authorize('viewAny', $this->resourceModelClass);
 
         $models = $this->indexModel();
 
