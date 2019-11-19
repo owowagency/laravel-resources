@@ -6,5 +6,5 @@ use Illuminate\Http\Resources\Json\Resource;
 
 class ResourceResource extends Resource
 {
-
+    //
 }
