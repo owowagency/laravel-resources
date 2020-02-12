@@ -274,7 +274,7 @@ class ResourceController extends Controller
         $model = $instance->resolveRouteBinding($value);
 
         if (is_null($model)) {
-            throw new ModelNotFoundException($model, $value);
+            throw new ModelNotFoundException($instance, $value);
         }
 
         return $model;

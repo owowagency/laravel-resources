@@ -25,10 +25,6 @@ class GetModeltest extends TestCase
     {
         [$controller, $model] = $this->prepare();
 
-        // Resource model class need to be set in order for the controller
-        // which model to query.
-        $controller->resourceModelClass = TestModel::class;
-
         // Get model by id.
         $result = $controller->getModel($model->id);
 
@@ -45,8 +41,7 @@ class GetModeltest extends TestCase
     {
         [$controller, $model] = $this->prepare();
 
-        // Resource model class need to be set in order for the controller
-        // which model to query. Set the same model but with a different
+        // Overwrite resource model class with a model that has a different
         // route key name.
         $controller->resourceModelClass = TestModelRouteKey::class;
 
@@ -60,10 +55,6 @@ class GetModeltest extends TestCase
     public function get_model_not_found(): void
     {
         [$controller, $model] = $this->prepare();
-
-        // Resource model class need to be set in order for the controller
-        // which model to query.
-        $controller->resourceModelClass = TestModel::class;
 
         // Ecpect exception to be thrown.
         $this->expectException(ModelNotFoundException::class);
@@ -80,6 +71,10 @@ class GetModeltest extends TestCase
     protected function prepare(): array
     {
         $controller = new ResourceController();
+
+        // Resource model class need to be set in order for the controller
+        // which model to query.
+        $controller->resourceModelClass = TestModel::class;
 
         $model = TestModel::create([
             'value' => 'some_value',
