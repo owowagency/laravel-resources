@@ -10,6 +10,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use OwowAgency\LaravelResources\Requests\ResourceRequest;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
@@ -258,15 +259,24 @@ class ResourceController extends Controller
     /**
      * Tries to retrieve the model.
      * 
-     * @param  mixed  $model
+     * @param  mixed  $value
      * @return \Illuminate\Database\Eloquent\Model
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
-    public function getModel($model): Model
+    public function getModel($value): Model
     {
-        if ($model instanceof Model) {
-            return $model;
+        if ($value instanceof Model) {
+            return $value;
         }
 
-        return $this->resourceModelClass::findOrFail($model);
+        $instance = new $this->resourceModelClass;
+
+        $model = $instance->resolveRouteBinding($value);
+
+        if (is_null($model)) {
+            throw new ModelNotFoundException($instance, $value);
+        }
+
+        return $model;
     }
 }
