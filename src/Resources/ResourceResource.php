@@ -2,9 +2,9 @@
 
 namespace OwowAgency\LaravelResources\Resources;
 
-use Illuminate\Http\Resources\Json\Resource;
+use Illuminate\Http\Resources\Json\JsonResource;
 
-class ResourceResource extends Resource
+class ResourceResource extends JsonResource
 {
     //
 }
