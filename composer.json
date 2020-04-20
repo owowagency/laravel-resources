@@ -13,7 +13,7 @@
         "Resources"
     ],
     "require": {
-        "illuminate/support": "^5|^6",
+        "illuminate/support": "^5|^6|^7",
         "dees040/laravel-api-responses": "^0.2"
     },
     "require-dev": {
