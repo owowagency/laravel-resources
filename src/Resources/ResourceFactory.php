@@ -80,7 +80,7 @@ class ResourceFactory
             if (count($model) == 0) {
                 return ResourceModel::class;
             } else {
-                $model = $model[0];
+                $model = Arr::first($model);
             }
         }
 
