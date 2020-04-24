@@ -2,6 +2,7 @@
 
 namespace OwowAgency\LaravelResources\Resources;
 
+use Illuminate\Support\Arr;
 use Illuminate\Http\Resources\MissingValue;
 use OwowAgency\LaravelResources\Models\ResourceModel;
 
@@ -66,7 +67,7 @@ class ResourceFactory
     /**
      * Get the class of the specified model.
      *
-     * @param  string  $model
+     * @param  mixed  $model
      * @param  boolean  $collection
      * @return string
      */
