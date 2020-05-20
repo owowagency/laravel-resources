@@ -46,7 +46,7 @@ class ResourceController extends Controller
 
         $models = $this->indexModel();
 
-        $resources = resource($models, true);
+        $resources = resource($models);
 
         return ok($resources);
     }
