@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Pagination\LengthAwarePaginator;
 use OwowAgency\LaravelResources\Resources\ResourceFactory;
 
 if (! function_exists('resource')) {
@@ -12,6 +13,14 @@ if (! function_exists('resource')) {
      */
     function resource($model, $isCollection = false)
     {
-        return (new ResourceFactory)->make($model, $isCollection);
+        $resource = (new ResourceFactory)->make($model, $isCollection);
+
+        if ($model instanceof LengthAwarePaginator) {
+            $model->setCollection($resource->collection);
+
+            return $model;
+        }
+
+        return $resource;
     }
 }
