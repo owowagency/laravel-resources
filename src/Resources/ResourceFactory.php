@@ -39,9 +39,9 @@ class ResourceFactory
      *
      * @param  mixed  $model
      * @param  boolean  $isPlural
-     * @return Illuminate\Http\Resources\Json\JsonResource|
-     *         Illuminate\Http\Resources\Json\AnonymousResourceCollection|
-     *         Illuminate\Pagination\LengthAwarePaginator
+     * @return Illuminate\Http\Resources\Json\JsonResource
+     *         | Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     *         | Illuminate\Pagination\LengthAwarePaginator
      *
      * @throws \Exception
      */
