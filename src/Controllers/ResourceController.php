@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use OwowAgency\LaravelResources\Requests\ResourceRequest;
@@ -47,13 +46,9 @@ class ResourceController extends Controller
 
         $models = $this->indexModel();
 
-        $resources = resource($models, true);
+        $resources = resource($models);
 
-        if ($models instanceof LengthAwarePaginator) {
-            $models->setCollection($resources->collection);
-        }
-
-        return ok($models);
+        return ok($resources);
     }
 
     /**

@@ -7,11 +7,11 @@ if (! function_exists('resource')) {
      * Makes the resource for the specified model class.
      *
      * @param  mixed  $model
-     * @param  boolean  $isCollection
+     * @param  boolean  $isPlural
      * @return mixed
      */
-    function resource($model, $isCollection = false)
+    function resource($model, $isPlural = null)
     {
-        return (new ResourceFactory)->make($model, $isCollection);
+        return (new ResourceFactory)->make($model, $isPlural);
     }
 }
