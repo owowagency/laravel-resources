@@ -3,7 +3,9 @@
 namespace OwowAgency\LaravelResources\Resources;
 
 use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Illuminate\Http\Resources\MissingValue;
+use Illuminate\Pagination\LengthAwarePaginator;
 use OwowAgency\LaravelResources\Models\ResourceModel;
 
 class ResourceFactory
@@ -36,29 +38,39 @@ class ResourceFactory
      * Makes the resource for the specified model class.
      *
      * @param  mixed  $model
-     * @param  boolean  $collection
-     * @return mixed
+     * @param  boolean  $isPlural
+     * @return Illuminate\Http\Resources\Json\JsonResource|
+     *         Illuminate\Http\Resources\Json\AnonymousResourceCollection|
+     *         Illuminate\Pagination\LengthAwarePaginator
      *
      * @throws \Exception
      */
-    public function make($model, $collection = false)
+    public function make($model, $isPlural = null)
     {
-        if (is_null($model)) {
+        // Return the model directly if it is invalid.
+        if (is_null($model) || $model instanceof MissingValue) {
             return $model;
         }
 
-        if ($model instanceof MissingValue) {
-            return $model;
-        }
-
-        $modelClass = $this->getModelClass($model, $collection);
+        // Check if the model is plural (a collection or paginated).
+        $isPlural = $isPlural
+            ?? ($model instanceof Collection || $model instanceof LengthAwarePaginator);
+        
+        $modelClass = $this->getModelClass($model, $isPlural);
 
         $resourceClass = $this->getResourceClass($modelClass);
 
-        if (! $collection) {
+        // Based on the model's plurality, make the correct resource.
+        if (! $isPlural) {
             $resource = new $resourceClass($model);
         } else {
             $resource = $resourceClass::collection($model);
+        }
+
+        // If the model is paginated, we return `LengthAwarePaginator` instance
+        // with the resource as its collection.
+        if ($model instanceof LengthAwarePaginator) {
+            return $model->setCollection($resource->collection);
         }
 
         return $resource;
@@ -68,16 +80,16 @@ class ResourceFactory
      * Get the class of the specified model.
      *
      * @param  mixed  $model
-     * @param  boolean  $collection
+     * @param  boolean  $isPlural
      * @return string
      */
-    public function getModelClass($model, $collection = false)
+    public function getModelClass($model, $isPlural = false)
     {
         if (is_null($model)) {
             return ResourceModel::class;
         }
 
-        if ($collection) {
+        if ($isPlural) {
             if (count($model) == 0) {
                 return ResourceModel::class;
             } else {
