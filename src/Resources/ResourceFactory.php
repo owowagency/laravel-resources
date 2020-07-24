@@ -85,7 +85,7 @@ class ResourceFactory
      */
     public function getModelClass($model, $isPlural = false)
     {
-        if (is_null($model)) {
+        if (is_null($model) || ! is_object($model)) {
             return ResourceModel::class;
         }
 
