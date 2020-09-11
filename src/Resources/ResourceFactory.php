@@ -5,7 +5,7 @@ namespace OwowAgency\LaravelResources\Resources;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Http\Resources\MissingValue;
-use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\AbstractPaginator;
 use OwowAgency\LaravelResources\Models\ResourceModel;
 
 class ResourceFactory
@@ -41,7 +41,7 @@ class ResourceFactory
      * @param  boolean  $isPlural
      * @return Illuminate\Http\Resources\Json\JsonResource
      *         | Illuminate\Http\Resources\Json\AnonymousResourceCollection
-     *         | Illuminate\Pagination\LengthAwarePaginator
+     *         | Illuminate\Pagination\AbstractPaginator
      *
      * @throws \Exception
      */
@@ -54,7 +54,7 @@ class ResourceFactory
 
         // Check if the model is plural (a collection or paginated).
         $isPlural = $isPlural
-            ?? ($model instanceof Collection || $model instanceof LengthAwarePaginator);
+            ?? ($model instanceof Collection || $model instanceof AbstractPaginator);
         
         $modelClass = $this->getModelClass($model, $isPlural);
 
@@ -67,9 +67,9 @@ class ResourceFactory
             $resource = $resourceClass::collection($model);
         }
 
-        // If the model is paginated, we return `LengthAwarePaginator` instance
+        // If the model is paginated, we return `AbstractPaginator` instance
         // with the resource as its collection.
-        if ($model instanceof LengthAwarePaginator) {
+        if ($model instanceof AbstractPaginator) {
             return $model->setCollection($resource->collection);
         }
 
