@@ -97,7 +97,9 @@ class ResourceFactory
             }
         }
 
-        return get_class($model);
+        return is_object($model)
+            ? get_class($model)
+            : ResourceModel::class;
     }
 
     /**
