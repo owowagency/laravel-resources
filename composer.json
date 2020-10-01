@@ -22,7 +22,7 @@
         "orchestra/testbench": "^6.2",
         "owowagency/phpunit-snapshot-assertions": "^0.0.4",
         "sempro/phpunit-pretty-print": "^1.0",
-        "spatie/phpunit-snapshot-assertions": "^2.1"
+        "spatie/phpunit-snapshot-assertions": "^4.2"
     },
     "autoload": {
         "psr-4": {
