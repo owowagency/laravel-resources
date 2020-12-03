@@ -58,7 +58,7 @@ abstract class TestCase extends BaseTestCase
      */
     private function setUpRoutes(): void
     {
-        Route::resource('test-models', ResourceController::class, [
+        Route::apiResource('test-models', ResourceController::class, [
             'model' => TestModel::class,
             'requests' => [
                 'store' => TestModelRequest::class,

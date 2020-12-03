@@ -2,7 +2,7 @@
 
 namespace OwowAgency\LaravelResources\Tests\Feature\TestModels;
 
-use Illuminate\Foundation\Testing\TestResponse;
+use Illuminate\Testing\TestResponse;
 use OwowAgency\LaravelResources\Tests\TestCase;
 
 class StoreTest extends TestCase
@@ -35,7 +35,7 @@ class StoreTest extends TestCase
      * Makes a request.
      * 
      * @param  array  $data
-     * @return \Illuminate\Foundation\Testing\TestResponse
+     * @return \Illuminate\Testing\TestResponse
      */
     protected function makeRequest(array $data = []): TestResponse
     {
@@ -45,14 +45,14 @@ class StoreTest extends TestCase
     /**
      * Asserts a response.
      * 
-     * @param  \Illuminate\Foundation\Testing\TestResponse
+     * @param  \Illuminate\Testing\TestResponse
      * @return void
      */
     protected function assertResponse(TestResponse $response): void
     {
         $response->assertStatus(201);
 
-        $this->assertJsonStructureSnapshot($response);
+        $this->assertJsonStructureSnapshot($response->getContent());
     }
 
     /**
