@@ -2,7 +2,7 @@
 
 namespace OwowAgency\LaravelResources\Tests\Feature\TestModels;
 
-use Illuminate\Foundation\Testing\TestResponse;
+use Illuminate\Testing\TestResponse;
 use OwowAgency\LaravelResources\Tests\TestCase;
 use OwowAgency\LaravelResources\Tests\Support\Models\TestModel;
 
@@ -35,7 +35,7 @@ class IndexTest extends TestCase
     /**
      * Makes a request.
      * 
-     * @return \Illuminate\Foundation\Testing\TestResponse
+     * @return \Illuminate\Testing\TestResponse
      */
     protected function makeRequest(): TestResponse
     {

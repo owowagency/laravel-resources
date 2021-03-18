@@ -2,13 +2,16 @@
 
 namespace OwowAgency\LaravelResources\Tests\Feature\TestModels;
 
-use Illuminate\Foundation\Testing\TestResponse;
+use Illuminate\Testing\TestResponse;
+use OwowAgency\LaravelResources\Tests\Support\Concerns\MockPolicies;
 use OwowAgency\LaravelResources\Tests\TestCase;
 
 class StoreTest extends TestCase
 {
+    use MockPolicies;
+
     /** @test */
-    public function store_can_be_requested()
+    public function store_can_be_requested(): void
     {
         $data = $this->requestData();
 
@@ -17,6 +20,16 @@ class StoreTest extends TestCase
         $this->assertResponse($response);
 
         $this->assertDatabase($data);
+    }
+
+    /** @test */
+    public function authorization_is_checked_before_validation(): void
+    {
+        $this->mockPolicy(false);
+
+        $response = $this->makeRequest();
+
+        $this->assertResponse($response, 403);
     }
 
     /**
@@ -35,24 +48,27 @@ class StoreTest extends TestCase
      * Makes a request.
      * 
      * @param  array  $data
-     * @return \Illuminate\Foundation\Testing\TestResponse
+     * @return \Illuminate\Testing\TestResponse
      */
     protected function makeRequest(array $data = []): TestResponse
     {
-        return $this->post('test-models', $data);
+        return $this->json('POST', 'test-models', $data);
     }
 
     /**
      * Asserts a response.
      * 
-     * @param  \Illuminate\Foundation\Testing\TestResponse
+     * @param  \Illuminate\Testing\TestResponse  $response
+     * @param  int  $status
      * @return void
      */
-    protected function assertResponse(TestResponse $response): void
+    protected function assertResponse(TestResponse $response, int $status = 201): void
     {
-        $response->assertStatus(201);
+        $response->assertStatus($status);
 
-        $this->assertJsonStructureSnapshot($response);
+        if ($status === 201) {
+            $this->assertJsonStructureSnapshot($response);
+        }
     }
 
     /**

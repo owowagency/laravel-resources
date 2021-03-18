@@ -69,9 +69,9 @@ class ResourceController extends Controller
      */
     public function store(Request $request)
     {
-        $request = $this->validateRequest();
+        $this->authorize('create', [$this->resourceModelClass, $request->all()]);
 
-        $this->authorize('create', [$this->resourceModelClass, $request->validated()]);
+        $request = $this->validateRequest();
 
         $model = $this->storeModel($request);
 
@@ -130,11 +130,11 @@ class ResourceController extends Controller
      */
     public function update(Request $request, $model)
     {
+        $this->authorize('update', [$model, $request->all()]);
+
         $request = $this->validateRequest();
 
         $model = $this->getModel($model);
-
-        $this->authorize('update', [$model, $request->validated()]);
 
         $this->updateModel($request, $model);
 
