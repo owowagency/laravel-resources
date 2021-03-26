@@ -3,19 +3,30 @@
 namespace OwowAgency\LaravelResources\Tests\Feature\TestModels;
 
 use Illuminate\Testing\TestResponse;
-use OwowAgency\LaravelResources\Tests\TestCase;
 use OwowAgency\LaravelResources\Tests\Support\Models\TestModel;
 
 class IndexTest extends TestCase
 {
     /** @test */
-    public function index_can_be_requested()
+    public function can_index(): void
     {
         $this->prepare();
 
         $response = $this->makeRequest();
 
         $this->assertResponse($response);
+    }
+
+    /** @test */
+    public function cannot_index(): void
+    {
+        $this->prepare();
+
+        $this->mockPolicy('viewAny', false);
+
+        $response = $this->makeRequest();
+
+        $this->assertResponse($response, 403);
     }
 
     /**
@@ -46,12 +57,15 @@ class IndexTest extends TestCase
      * Asserts a response.
      * 
      * @param  \Illuminate\Foundation\Testing\TestResponse
+     * @param  int  $status
      * @return void
      */
-    protected function assertResponse(TestResponse $response): void
+    protected function assertResponse(TestResponse $response, int $status = 200): void
     {
-        $response->assertStatus(200);
+        $response->assertStatus($status);
 
-        $this->assertJsonStructureSnapshot($response);
+        if ($status === 200) {
+            $this->assertJsonStructureSnapshot($response);
+        }
     }
 }

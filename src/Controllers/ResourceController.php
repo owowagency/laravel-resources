@@ -130,11 +130,11 @@ class ResourceController extends Controller
      */
     public function update(Request $request, $model)
     {
+        $model = $this->getModel($model);
+        
         $this->authorize('update', [$model, $request->all()]);
 
         $request = $this->validateRequest();
-
-        $model = $this->getModel($model);
 
         $this->updateModel($request, $model);
 
