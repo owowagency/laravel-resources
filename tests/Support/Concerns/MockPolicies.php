@@ -11,27 +11,23 @@ trait MockPolicies
     /**
      * Mock the policies.
      *
-     * @param  bool  $success
+     * @param  string  $ability
+     * @param  bool  $result
      * @return void
      */
-    public function mockPolicy(bool $success): void
+    public function mockPolicy(string $ability, bool $result = true): void
     {
         $gate = Gate::partialMock();
 
         $gate->shouldReceive('getPolicyFor')
             ->with(TestModel::class)
-            ->andReturn(true);
+            ->andReturn($result);
 
         $gate->shouldReceive('resolveUser')
             ->andReturn(new User());
 
         $gate->shouldReceive('dispatchGateEvaluatedEvent');
 
-        Gate::define(
-            'create',
-            function (User $user, $target) use ($success) {
-                return false;
-            },
-        );
+        Gate::define($ability, fn () => $result);
     }
 }

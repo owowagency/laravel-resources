@@ -3,19 +3,32 @@
 namespace OwowAgency\LaravelResources\Tests\Feature\TestModels;
 
 use Illuminate\Testing\TestResponse;
-use OwowAgency\LaravelResources\Tests\TestCase;
 use OwowAgency\LaravelResources\Tests\Support\Models\TestModel;
 
 class DestroyTest extends TestCase
 {
     /** @test */
-    public function destroy_can_be_requested()
+    public function can_destroy()
     {
         [$model] = $this->prepare();
 
         $response = $this->makeRequest($model);
 
         $this->assertResponse($response);
+
+        $this->assertDatabase($model);
+    }
+
+    /** @test */
+    public function cannot_destroy()
+    {
+        [$model] = $this->prepare();
+
+        $this->mockPolicy('delete', false);
+
+        $response = $this->makeRequest($model);
+
+        $this->assertResponse($response, 403);
     }
 
     /**
@@ -46,12 +59,13 @@ class DestroyTest extends TestCase
     /**
      * Asserts a response.
      * 
-     * @param  \Illuminate\Testing\TestResponse
+     * @param  \Illuminate\Foundation\Testing\TestResponse
+     * @param  int  $status
      * @return void
      */
-    protected function assertResponse(TestResponse $response): void
+    protected function assertResponse(TestResponse $response, int $status = 204): void
     {
-        $response->assertStatus(204);
+        $response->assertStatus($status);
     }
 
     /**

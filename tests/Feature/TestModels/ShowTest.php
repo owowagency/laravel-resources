@@ -3,19 +3,30 @@
 namespace OwowAgency\LaravelResources\Tests\Feature\TestModels;
 
 use Illuminate\Testing\TestResponse;
-use OwowAgency\LaravelResources\Tests\TestCase;
 use OwowAgency\LaravelResources\Tests\Support\Models\TestModel;
 
 class ShowTest extends TestCase
 {
     /** @test */
-    public function show_can_be_requested()
+    public function can_show()
     {
         [$model] = $this->prepare();
 
         $response = $this->makeRequest($model);
 
         $this->assertResponse($response);
+    }
+
+    /** @test */
+    public function cannot_show()
+    {
+        [$model] = $this->prepare();
+
+        $this->mockPolicy('view', false);
+
+        $response = $this->makeRequest($model);
+
+        $this->assertResponse($response, 403);
     }
 
     /**
@@ -47,12 +58,15 @@ class ShowTest extends TestCase
      * Asserts a response.
      * 
      * @param  \Illuminate\Foundation\Testing\TestResponse
+     * @param  int  $status
      * @return void
      */
-    protected function assertResponse(TestResponse $response): void
+    protected function assertResponse(TestResponse $response, int $status = 200): void
     {
-        $response->assertStatus(200);
+        $response->assertStatus($status);
 
-        $this->assertJsonStructureSnapshot($response);
+        if ($status === 200) {
+            $this->assertJsonStructureSnapshot($response);
+        }
     }
 }

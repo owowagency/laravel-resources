@@ -3,15 +3,11 @@
 namespace OwowAgency\LaravelResources\Tests\Feature\TestModels;
 
 use Illuminate\Testing\TestResponse;
-use OwowAgency\LaravelResources\Tests\Support\Concerns\MockPolicies;
-use OwowAgency\LaravelResources\Tests\TestCase;
 
 class StoreTest extends TestCase
 {
-    use MockPolicies;
-
     /** @test */
-    public function store_can_be_requested(): void
+    public function can_store(): void
     {
         $data = $this->requestData();
 
@@ -23,11 +19,13 @@ class StoreTest extends TestCase
     }
 
     /** @test */
-    public function authorization_is_checked_before_validation(): void
+    public function cannot_store(): void
     {
-        $this->mockPolicy(false);
+        $this->mockPolicy('create', false);
 
-        $response = $this->makeRequest();
+        $data = $this->requestData();
+
+        $response = $this->makeRequest($data);
 
         $this->assertResponse($response, 403);
     }

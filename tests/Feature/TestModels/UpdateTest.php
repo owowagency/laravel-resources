@@ -3,13 +3,12 @@
 namespace OwowAgency\LaravelResources\Tests\Feature\TestModels;
 
 use Illuminate\Testing\TestResponse;
-use OwowAgency\LaravelResources\Tests\TestCase;
 use OwowAgency\LaravelResources\Tests\Support\Models\TestModel;
 
 class UpdateTest extends TestCase
 {
     /** @test */
-    public function update_can_be_requested()
+    public function can_update()
     {
         [$model] = $this->prepare();
 
@@ -18,6 +17,22 @@ class UpdateTest extends TestCase
         $response = $this->makeRequest($model, $data);
 
         $this->assertResponse($response);
+
+        $this->assertDatabase($model, $data);
+    }
+
+    /** @test */
+    public function cannot_update()
+    {
+        [$model] = $this->prepare();
+
+        $this->mockPolicy('update', false);
+
+        $data = $this->requestData();
+
+        $response = $this->makeRequest($model, $data);
+
+        $this->assertResponse($response, 403);
     }
 
     /**
@@ -61,14 +76,17 @@ class UpdateTest extends TestCase
     /**
      * Asserts a response.
      * 
-     * @param  \Illuminate\Testing\TestResponse
+     * @param  \Illuminate\Testing\TestResponse  $response
+     * @param  int  $status
      * @return void
      */
-    protected function assertResponse(TestResponse $response): void
+    protected function assertResponse(TestResponse $response, int $status = 200): void
     {
-        $response->assertStatus(200);
+        $response->assertStatus($status);
 
-        $this->assertJsonStructureSnapshot($response);
+        if ($status === 200) {
+            $this->assertJsonStructureSnapshot($response);
+        }
     }
 
     /**
