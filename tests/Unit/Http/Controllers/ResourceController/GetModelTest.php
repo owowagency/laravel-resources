@@ -58,6 +58,7 @@ class GetModeltest extends TestCase
 
         // Ecpect exception to be thrown.
         $this->expectException(ModelNotFoundException::class);
+        $this->expectExceptionMessage('No query results for model [' . get_class($model) . '] 0');
 
         // Get model unknown id.
         $controller->getModel(0);
