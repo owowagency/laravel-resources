@@ -65,7 +65,7 @@ class PostController extends ResourceController
 
 ## Eloquent API resources
 
-This package will always try to return the API resource representation of the specified model. I applies auto discovery to determine what resource to use.
+This package will always try to return the API resource representation of the specified model. It applies auto discovery to determine what resource to use.
 
 By default it will use the following pattern to discover the resource class:
 ```
