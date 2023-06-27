@@ -1,4 +1,4 @@
-# Banner
+# Laravel Resources
 
 <br>
 
