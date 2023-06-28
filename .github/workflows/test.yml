@@ -24,5 +24,8 @@ jobs:
         path: vendor
         key: composer-${{ hashFiles('composer.lock') }}
 
+    - name: Style
+      run: vendor/bin/pint --test
+
     - name: Phpunit
       run: vendor/bin/phpunit
