@@ -14,7 +14,8 @@
     ],
     "require": {
         "illuminate/support": "^10.0",
-        "dees040/laravel-api-responses": "dev-master"
+        "dees040/laravel-api-responses": "dev-master",
+        "laravel/pint": "^1.10"
     },
     "require-dev": {
         "phpunit/phpunit": "~8.0|~9.0",

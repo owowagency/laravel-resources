@@ -33,8 +33,6 @@ class DestroyTest extends TestCase
 
     /**
      * Prepares for tests.
-     * 
-     * @return array
      */
     protected function prepare(): array
     {
@@ -47,9 +45,6 @@ class DestroyTest extends TestCase
 
     /**
      * Makes a request.
-     * 
-     * @param  \OwowAgency\LaravelResources\Tests\Support\Models\TestModel  $model
-     * @return \Illuminate\Testing\TestResponse
      */
     protected function makeRequest(TestModel $model): TestResponse
     {
@@ -58,10 +53,8 @@ class DestroyTest extends TestCase
 
     /**
      * Asserts a response.
-     * 
+     *
      * @param  \Illuminate\Foundation\Testing\TestResponse
-     * @param  int  $status
-     * @return void
      */
     protected function assertResponse(TestResponse $response, int $status = 204): void
     {
@@ -70,9 +63,6 @@ class DestroyTest extends TestCase
 
     /**
      * Asserts the database.
-     * 
-     * @param  \OwowAgency\LaravelResources\Tests\Support\Models\TestModel  $model
-     * @return void
      */
     protected function assertDatabase(TestModel $model): void
     {

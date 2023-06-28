@@ -32,8 +32,6 @@ class StoreTest extends TestCase
 
     /**
      * Returns data that could be used in a request.
-     * 
-     * @return array
      */
     protected function requestData(): array
     {
@@ -44,9 +42,6 @@ class StoreTest extends TestCase
 
     /**
      * Makes a request.
-     * 
-     * @param  array  $data
-     * @return \Illuminate\Testing\TestResponse
      */
     protected function makeRequest(array $data = []): TestResponse
     {
@@ -55,10 +50,6 @@ class StoreTest extends TestCase
 
     /**
      * Asserts a response.
-     * 
-     * @param  \Illuminate\Testing\TestResponse  $response
-     * @param  int  $status
-     * @return void
      */
     protected function assertResponse(TestResponse $response, int $status = 201): void
     {
@@ -71,9 +62,6 @@ class StoreTest extends TestCase
 
     /**
      * Asserts the database.
-     * 
-     * @param  array  $data
-     * @return void
      */
     protected function assertDatabase(array $data): void
     {

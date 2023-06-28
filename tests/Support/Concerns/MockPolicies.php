@@ -10,10 +10,6 @@ trait MockPolicies
 {
     /**
      * Mock the policies.
-     *
-     * @param  string  $ability
-     * @param  bool  $result
-     * @return void
      */
     public function mockPolicy(string $ability, bool $result = true): void
     {

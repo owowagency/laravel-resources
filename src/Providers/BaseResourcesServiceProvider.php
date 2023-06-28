@@ -34,12 +34,12 @@ abstract class BaseResourcesServiceProvider extends ServiceProvider
      *
      * @return array
      */
-    public abstract function getDefinableItems();
+    abstract public function getDefinableItems();
 
     /**
      * Get the type to make a definable class for.
      *
      * @return string
      */
-    protected abstract function getType();
+    abstract protected function getType();
 }

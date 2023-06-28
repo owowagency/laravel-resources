@@ -2,10 +2,10 @@
 
 namespace OwowAgency\LaravelResources\Resources;
 
-use Illuminate\Support\Arr;
-use Illuminate\Support\Collection;
 use Illuminate\Http\Resources\MissingValue;
 use Illuminate\Pagination\AbstractPaginator;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use OwowAgency\LaravelResources\Models\ResourceModel;
 
 class ResourceFactory
@@ -37,13 +37,13 @@ class ResourceFactory
     /**
      * Makes the resource for the specified model class.
      *
-     * @param  mixed  $model
-     * @param  boolean  $isPlural
+     * @param  bool  $isPlural
+     *
+     * @throws \Exception
+     *
      * @return Illuminate\Http\Resources\Json\JsonResource
      *         | Illuminate\Http\Resources\Json\AnonymousResourceCollection
      *         | Illuminate\Pagination\AbstractPaginator
-     *
-     * @throws \Exception
      */
     public function make($model, $isPlural = null)
     {
@@ -55,7 +55,7 @@ class ResourceFactory
         // Check if the model is plural (a collection or paginated).
         $isPlural = $isPlural
             ?? ($model instanceof Collection || $model instanceof AbstractPaginator);
-        
+
         $modelClass = $this->getModelClass($model, $isPlural);
 
         $resourceClass = $this->getResourceClass($modelClass);
@@ -79,8 +79,7 @@ class ResourceFactory
     /**
      * Get the class of the specified model.
      *
-     * @param  mixed  $model
-     * @param  boolean  $isPlural
+     * @param  bool  $isPlural
      * @return string
      */
     public function getModelClass($model, $isPlural = false)
@@ -106,7 +105,6 @@ class ResourceFactory
      * Get the resource class by model class.
      *
      * @param  string  $modelClass
-     * @return mixed
      */
     public function getResourceClass($modelClass)
     {

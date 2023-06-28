@@ -32,7 +32,6 @@ class LaravelResources
     /**
      * LaravelResources constructor.
      *
-     * @param  \Illuminate\Contracts\Container\Container  $container
      * @return void
      */
     public function __construct(Container $container)
@@ -43,6 +42,7 @@ class LaravelResources
     /**
      * Define a executable class for a given model and the type of class.
 
+     *
      * @param  string  $type
      * @param  string  $model
      * @param  string  $value
@@ -63,7 +63,6 @@ class LaravelResources
      * Get a resource instance for a given model.
      *
      * @param  object|string  $model
-     * @return mixed
      */
     public function getResourceFor($model)
     {
@@ -74,7 +73,6 @@ class LaravelResources
      * Get a definable instance for a given model.
      *
      * @param  object|string  $model
-     * @return mixed
      */
     protected function getDefinableFor($type, $model)
     {
@@ -95,7 +93,6 @@ class LaravelResources
      * Build a definable instance of the given type.
      *
      * @param  object|string  $class
-     * @return mixed
      */
     protected function resolveDefinable($class)
     {

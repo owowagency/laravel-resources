@@ -31,8 +31,6 @@ class IndexTest extends TestCase
 
     /**
      * Prepares for tests.
-     * 
-     * @return array
      */
     protected function prepare(): array
     {
@@ -45,8 +43,6 @@ class IndexTest extends TestCase
 
     /**
      * Makes a request.
-     * 
-     * @return \Illuminate\Testing\TestResponse
      */
     protected function makeRequest(): TestResponse
     {
@@ -55,10 +51,8 @@ class IndexTest extends TestCase
 
     /**
      * Asserts a response.
-     * 
+     *
      * @param  \Illuminate\Foundation\Testing\TestResponse
-     * @param  int  $status
-     * @return void
      */
     protected function assertResponse(TestResponse $response, int $status = 200): void
     {

@@ -6,9 +6,7 @@ if (! function_exists('resource')) {
     /**
      * Makes the resource for the specified model class.
      *
-     * @param  mixed  $model
-     * @param  boolean  $isPlural
-     * @return mixed
+     * @param  bool  $isPlural
      */
     function resource($model, $isPlural = null)
     {
