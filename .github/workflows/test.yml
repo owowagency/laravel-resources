@@ -15,14 +15,20 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Composer
-      run: composer install --no-scripts --prefer-dist --ignore-platform-reqs
+    - name: Get Composer Cache Directory
+      id: composer-cache
+      run: |
+        echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
-    - name: Cache composer dependencies
-      uses: actions/cache@v3
+    - uses: actions/cache@v3
       with:
-        path: vendor
-        key: composer-${{ hashFiles('composer.lock') }}
+        path: ${{ steps.composer-cache.outputs.dir }}
+        key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-composer-
+
+    - name: Composer
+      run: composer install
 
     - name: Style
       run: vendor/bin/pint --test
