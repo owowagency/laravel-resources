@@ -1,7 +1,5 @@
-[
 ![banner-dark](./assets/banner-dark.svg#gh-dark-mode-only)
 ![banner-light](./assets/banner-light.svg#gh-light-mode-only)
-](https://owow.io)
 
 <br>
 
