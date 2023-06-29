@@ -1,5 +1,5 @@
-![banner-dark](https://github.com/owowagency/laravel-resources/assets/45201651/2116a72a-f7dd-49cc-8af7-303c55b2b9fd.svg#gh-dark-mode-only)
-![banner-light](https://github.com/owowagency/laravel-resources/assets/45201651/9044d55a-64fb-4236-a878-2beaea543b34.svg#gh-light-mode-only)
+![banner-dark](./assets/banner-dark.svg#gh-dark-mode-only)
+![banner-light](./assets/banner-light.svg#gh-light-mode-only)
 
 <br>
 
