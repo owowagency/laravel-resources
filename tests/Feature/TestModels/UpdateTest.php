@@ -37,8 +37,6 @@ class UpdateTest extends TestCase
 
     /**
      * Returns data that could be used in a request.
-     * 
-     * @return array
      */
     protected function requestData(): array
     {
@@ -49,8 +47,6 @@ class UpdateTest extends TestCase
 
     /**
      * Prepares for tests.
-     * 
-     * @return array
      */
     protected function prepare(): array
     {
@@ -63,10 +59,6 @@ class UpdateTest extends TestCase
 
     /**
      * Makes a request.
-     * 
-     * @param  \OwowAgency\LaravelResources\Tests\Support\Models\TestModel  $model
-     * @param  array  $data
-     * @return \Illuminate\Testing\TestResponse
      */
     protected function makeRequest(TestModel $model, array $data): TestResponse
     {
@@ -75,10 +67,6 @@ class UpdateTest extends TestCase
 
     /**
      * Asserts a response.
-     * 
-     * @param  \Illuminate\Testing\TestResponse  $response
-     * @param  int  $status
-     * @return void
      */
     protected function assertResponse(TestResponse $response, int $status = 200): void
     {
@@ -91,16 +79,12 @@ class UpdateTest extends TestCase
 
     /**
      * Asserts the database.
-     * 
-     * @param  \OwowAgency\LaravelResources\Tests\Support\Models\TestModel  $model
-     * @param  array  $data
-     * @return void
      */
     protected function assertDatabase(TestModel $model, array $data): void
     {
         $this->assertDatabaseHas('test_models', array_merge(
             ['id' => $model->id],
-            $data
+            $data,
         ));
     }
 }

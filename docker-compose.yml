@@ -2,8 +2,8 @@ version: '3'
 
 services:
   php:
-    image: thomasowow/laravel-php:8.0
-    container_name: lr-php
+    image: owow/laravel-php:8.2
+    container_name: laravel_resources_php
     tty: true
     volumes:
       - .:/var/www/html:cached

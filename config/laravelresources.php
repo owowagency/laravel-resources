@@ -10,7 +10,7 @@ return [
 
     /**
      * Configure resources that do not follow the default auto discovery rules.
-     * 
+     *
      * Eg:
      * [Post::class => SpecialPostResource::class]
      */

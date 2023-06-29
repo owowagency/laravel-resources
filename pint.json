@@ -1,0 +1,15 @@
+{
+    "preset": "laravel",
+    "rules": {
+        "method_chaining_indentation": true,
+        "no_superfluous_phpdoc_tags": true,
+        "phpdoc_order": true,
+        "phpdoc_types_order": true,
+        "no_extra_blank_lines": {
+            "tokens": ["extra", "curly_brace_block"]
+        },
+        "trailing_comma_in_multiline": {
+            "elements": ["arrays", "arguments", "parameters"]
+        }
+    }
+}

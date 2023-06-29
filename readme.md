@@ -1,4 +1,5 @@
-# Laravel Resources
+![banner-dark](https://github.com/owowagency/laravel-resources/assets/45201651/2116a72a-f7dd-49cc-8af7-303c55b2b9fd#gh-dark-mode-only)
+![banner-light](https://github.com/owowagency/laravel-resources/assets/45201651/9044d55a-64fb-4236-a878-2beaea543b34#gh-light-mode-only)
 
 <br>
 
@@ -11,7 +12,7 @@ Create api endpoints with ease.
 
 # 📖 Table of contents
 
-1. [Installation](#-installation)
+1. [Installation](#%EF%B8%8F-installation)
 1. [Usage](#-usage)
 1. [Contributing](#-contributing)
 1. [License](#-license)
