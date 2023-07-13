@@ -8,7 +8,12 @@
     <img src="https://github.com/owowagency/laravel-resources/actions/workflows/test.yml/badge.svg">
 </p>
 
-Create api endpoints with ease.
+
+<p align="center">
+    Sick and tired of having to create the same controller over and over? <br>
+    Look no further! OWOW presents "Laravel Resources". <br>
+    A package that makes creating API endpoints feel like breeze.
+</p>
 
 # 📖 Table of contents
 
