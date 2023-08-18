@@ -14,7 +14,7 @@
     ],
     "require": {
         "illuminate/support": "^10.0",
-        "dees040/laravel-api-responses": "^0.0",
+        "dees040/laravel-api-responses": "^0.3",
         "laravel/pint": "^1.10"
     },
     "require-dev": {
