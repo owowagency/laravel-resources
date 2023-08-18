@@ -2,11 +2,11 @@
 
 namespace OwowAgency\LaravelResources\Tests\Unit\Http\Controllers\ResourceController;
 
-use OwowAgency\LaravelResources\Tests\TestCase;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use OwowAgency\LaravelResources\Controllers\ResourceController;
 use OwowAgency\LaravelResources\Tests\Support\Models\TestModel;
 use OwowAgency\LaravelResources\Tests\Support\Models\TestModelRouteKey;
+use OwowAgency\LaravelResources\Tests\TestCase;
 
 class GetModeltest extends TestCase
 {
@@ -34,7 +34,7 @@ class GetModeltest extends TestCase
     /**
      * It should not matter what key is used as long as it is tested that
      * something else than id can be used.
-     * 
+     *
      * @test
      */
     public function get_model_by_value(): void
@@ -58,7 +58,7 @@ class GetModeltest extends TestCase
 
         // Ecpect exception to be thrown.
         $this->expectException(ModelNotFoundException::class);
-        $this->expectExceptionMessage('No query results for model [' . get_class($model) . '] 0');
+        $this->expectExceptionMessage('No query results for model ['.get_class($model).'] 0');
 
         // Get model unknown id.
         $controller->getModel(0);
@@ -66,8 +66,6 @@ class GetModeltest extends TestCase
 
     /**
      * Prepares for tests.
-     * 
-     * @return array
      */
     protected function prepare(): array
     {

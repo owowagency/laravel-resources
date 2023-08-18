@@ -2,16 +2,16 @@
 
 namespace OwowAgency\LaravelResources\Controllers;
 
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use OwowAgency\LaravelResources\Requests\ResourceRequest;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class ResourceController extends Controller
 {
@@ -53,8 +53,6 @@ class ResourceController extends Controller
 
     /**
      * Returns models instances used for the index action.
-     * 
-     * @return mixed
      */
     public function indexModel()
     {
@@ -64,7 +62,6 @@ class ResourceController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -82,9 +79,6 @@ class ResourceController extends Controller
 
     /**
      * Stores and returns the model instance for the store action.
-     * 
-     * @param  \Illuminate\Http\Request  $request
-     * @return mixed
      */
     public function storeModel(Request $request)
     {
@@ -112,9 +106,6 @@ class ResourceController extends Controller
 
     /**
      * Returns the model instance for the show action.
-     * 
-     * @param  \Illuminate\Database\Eloquent\Model  $model
-     * @return mixed
      */
     public function showModel(Model $model)
     {
@@ -124,14 +115,12 @@ class ResourceController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  mixed  $model
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $model)
     {
         $model = $this->getModel($model);
-        
+
         $this->authorize('update', [$model, $request->all()]);
 
         $request = $this->validateRequest();
@@ -145,9 +134,7 @@ class ResourceController extends Controller
 
     /**
      * Updates and returns the model instance for the update action.
-     * 
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Illuminate\Database\Eloquent\Model  $model
+     *
      * @return void
      */
     public function updateModel(Request $request, Model $model)
@@ -158,7 +145,6 @@ class ResourceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  mixed  $model
      * @return \Illuminate\Http\Response
      */
     public function destroy($model)
@@ -174,9 +160,7 @@ class ResourceController extends Controller
 
     /**
      * Deletes the model instance for the destroy action.
-     * 
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Illuminate\Database\Eloquent\Model  $model
+     *
      * @return void
      */
     public function destroyModel(Model $model)
@@ -188,10 +172,10 @@ class ResourceController extends Controller
      * Sets the resource model class.
      * When no request is present, like in terminal, skip.
      * Throw exception route has no specified model.
-     * 
-     * @return void
-     * 
+     *
      * @throws \Exception
+     *
+     * @return void
      */
     public function setResourceModelClass()
     {
@@ -213,9 +197,7 @@ class ResourceController extends Controller
     /**
      * Authorize a given action for the current user.
      *
-     * @param  mixed  $ability
-     * @param  mixed|array  $arguments
-     * @return mixed
+     * @param  array|mixed  $arguments
      */
     public function authorize($ability, $arguments = [])
     {
@@ -229,8 +211,6 @@ class ResourceController extends Controller
 
     /**
      * Validates request by classes specified in the route.
-     * 
-     * @return \Illuminate\Foundation\Http\FormRequest
      */
     public function validateRequest(): FormRequest
     {
@@ -253,9 +233,7 @@ class ResourceController extends Controller
 
     /**
      * Tries to retrieve the model.
-     * 
-     * @param  mixed  $value
-     * @return \Illuminate\Database\Eloquent\Model
+     *
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
     public function getModel($value): Model

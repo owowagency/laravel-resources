@@ -1,0 +1,37 @@
+name: Test
+
+on: pull_request
+
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    container: owow/laravel-php:8.1
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Get Composer Cache Directory
+      id: composer-cache
+      run: |
+        echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+    - uses: actions/cache@v3
+      with:
+        path: ${{ steps.composer-cache.outputs.dir }}
+        key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-composer-
+
+    - name: Composer
+      run: composer install
+
+    - name: Style
+      run: vendor/bin/pint --test
+
+    - name: Phpunit
+      run: vendor/bin/phpunit
