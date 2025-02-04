@@ -13,8 +13,8 @@
         "Resources"
     ],
     "require": {
-        "illuminate/support": "^10.0",
-        "dees040/laravel-api-responses": "^0.3",
+        "illuminate/support": "^10.0|^11.0|^12.0",
+        "dees040/laravel-api-responses": "^0.4",
         "laravel/pint": "^1.10"
     },
     "require-dev": {
